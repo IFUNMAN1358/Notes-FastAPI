@@ -1,8 +1,10 @@
-fastapi[uvicorn]
-alembic[sqlalchemy]
+fastapi
+uvicorn
 asyncpg
 python-dotenv
-redis[hiredis]
+alembic
+SQLAlchemy
+pydantic[email]
 passlib[bcrypt]
 python-jose[cryptography]
-pydantic[email]
+redis[hiredis]
