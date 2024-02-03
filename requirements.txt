@@ -1,0 +1,8 @@
+fastapi[uvicorn]
+alembic[sqlalchemy]
+asyncpg
+python-dotenv
+redis[hiredis]
+passlib[bcrypt]
+python-jose[cryptography]
+pydantic[email]
