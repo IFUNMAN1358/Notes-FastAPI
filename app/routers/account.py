@@ -11,7 +11,13 @@ from app.security.JWT import create_and_set_access_token
 from app.security.password import hash_password, verify_password
 from app.security.auth import get_current_user
 
+
 router = APIRouter()
+
+
+# ================================================================
+# Registration and delete account
+# ================================================================
 
 
 @router.post('/registration', response_model=users.ReturnIdUser, status_code=201)
@@ -39,7 +45,12 @@ async def delete_user(db: AsyncSession = Depends(get_db),
     return users.ReturnIdUser(id=current_user.id)
 
 
-@router.post('/login', status_code=202)
+# ================================================================
+# Login and logout
+# ================================================================
+
+
+@router.post('/login', response_model=users.ReturnIdUser, status_code=200)
 async def login_user(response: Response,
                      form_data: users.LoginUser):
     user = await get_user_by_email_or_username(form_data.email_username)
@@ -55,11 +66,11 @@ async def login_user(response: Response,
             detail='Wrong password!'
         )
     await create_and_set_access_token(user_id=user.id, response=response)
-    return {'status': 'Login is successful'}
+    return users.ReturnIdUser(id=user.id)
 
 
-@router.post('/logout', status_code=205)
+@router.post('/logout', response_model=users.ReturnIdUser, status_code=200)
 async def logout(response: Response,
                  current_user: users.ReturnIdUser = Depends(get_current_user)):
     response.delete_cookie(key='Authorization')
-    return {'status': 'Logout is successful'}
+    return users.ReturnIdUser(id=current_user.id)

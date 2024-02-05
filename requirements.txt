@@ -1,5 +1,6 @@
 fastapi
 uvicorn
+gunicorn
 asyncpg
 python-dotenv
 alembic
@@ -7,4 +8,3 @@ SQLAlchemy
 pydantic[email]
 passlib[bcrypt]
 python-jose[cryptography]
-redis[hiredis]

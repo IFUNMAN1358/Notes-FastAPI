@@ -6,7 +6,7 @@ from app.postgres.tables import User
 from app.schemas import users
 
 
-async def get_user_by_email_or_username(email_or_username: str) -> users.FullUser:
+async def get_user_by_email_or_username(email_or_username: str):
     db = async_session()
     try:
         user = await db.scalar(select(User).where(or_(User.username == email_or_username,
@@ -16,7 +16,7 @@ async def get_user_by_email_or_username(email_or_username: str) -> users.FullUse
         await db.close()
 
 
-async def get_user_by_id(user_id: UUID4) -> users.FullUser:
+async def get_user_by_id(user_id: UUID4):
     db = async_session()
     try:
         user = await db.scalar(select(User).where(User.id == user_id))

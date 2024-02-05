@@ -31,8 +31,7 @@ async def create_note(input_note: notes.CreateNote,
                       current_user: users.ReturnIdUser = Depends(get_current_user)):
     note = Note(owner_id=current_user.id,
                 title=input_note.title,
-                content=input_note.content,
-                tag=input_note.tag)
+                content=input_note.content)
     try:
         db.add(note)
         await db.commit()

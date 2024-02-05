@@ -24,7 +24,6 @@ class Note(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, unique=True)
     content = Column(String)
-    tag = Column(String, index=True)
     is_favorite = Column(Boolean, default=False)
     owner_id = Column(UUID(as_uuid=True), ForeignKey('users.id'))
 

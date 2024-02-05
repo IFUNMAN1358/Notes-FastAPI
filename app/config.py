@@ -1,13 +1,8 @@
-from os import getenv, path
+from os import getenv
 from dotenv import load_dotenv
 
 
-path = path.join(
-    path.dirname(
-        path.dirname(__file__)
-    ), 'env', '.env')
-
-load_dotenv(dotenv_path=path)
+load_dotenv()
 
 
 class Config:
@@ -20,10 +15,6 @@ class Config:
     # url for connect to database postgres
     postgres_url =\
         f'postgresql+asyncpg://{__DB_USER}:{__DB_PASSWORD}@{__DB_HOST}:{__DB_PORT}/{__DB_NAME}?async_fallback=True'
-
-    # redis host and port for connect to redis database
-    redis_host = getenv('REDIS_HOST')
-    redis_port = int(getenv('REDIS_PORT'))
 
     # data for jwt authentication
     jwt_key = getenv('JWT_KEY')
