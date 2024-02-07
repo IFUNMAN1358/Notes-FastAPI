@@ -22,7 +22,7 @@ class Note(Base):
     __tablename__ = 'notes'
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, unique=True)
+    title = Column(String)
     content = Column(String)
     is_favorite = Column(Boolean, default=False)
     owner_id = Column(UUID(as_uuid=True), ForeignKey('users.id'))
